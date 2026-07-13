@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CATS, GAMES, type Game } from "./lib/data";
+import { CATS, GAMES, type Game } from "../lib/data";
 
 function GameCard({ game, onSelect }: { game: Game; onSelect: (game: Game) => void }) {
   const tiltRef = useRef<HTMLDivElement>(null);
