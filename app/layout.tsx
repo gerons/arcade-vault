@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Press_Start_2P, Courier_Prime, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./lib/AuthProvider";
+import { Nav } from "./components/Nav";
 
 const pressStart2P = Press_Start_2P({
   variable: "--font-press-start-2p",
@@ -41,7 +42,21 @@ export default function RootLayout({
         <div className="av-noise" />
         <div id="root">
           <AuthProvider>
+            <Nav />
             <main className="av-main">{children}</main>
+            <footer
+              style={{
+                borderTop: "1px solid var(--line)",
+                padding: "20px 32px",
+                textAlign: "center",
+                color: "var(--ink-faint)",
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                letterSpacing: "0.16em",
+              }}
+            >
+              © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+            </footer>
           </AuthProvider>
         </div>
       </body>
