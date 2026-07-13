@@ -1,6 +1,6 @@
 # 02 — Home Page
 
-- Estado: Aprobado
+- Estado: Implementado
 - Fecha: 2026-07-13
 - Dependencias: [01-mvp-visual](01-mvp-visual.md) (requiere Nav, AuthProvider, `GAMES` y rutas ya implementadas)
 - Objetivo: Migrar el template `home-about/home.jsx` a la ruta raíz `/` como landing page de Arcade Vault, moviendo la actual Biblioteca a `/games` y actualizando el Nav para reflejar ambas rutas, dejando la página "Acerca de" fuera de este spec.
@@ -45,23 +45,23 @@ No aplica — esta feature no introduce estructuras nuevas. El Home solo lee `GA
 
 ## Criterios de aceptación
 
-- [ ] `npm run dev` levanta la app sin errores de build/tipo.
-- [ ] `/` muestra el Home: hero con silhouettes flotantes, título "EL ARCADE CLÁSICO ESTÁ DE VUELTA", CTAs "EXPLORAR JUEGOS" y "CREAR CUENTA".
-- [ ] Sección "¿Por qué Arcade Vault?" muestra las 4 feature-cards con sus íconos.
-- [ ] Sección "Juegos disponibles ahora" muestra 6 `MiniCard` (de los 8 `GAMES`); click en una navega a `/juego/[id]` correcto.
-- [ ] Botón "VER TODOS LOS JUEGOS →" navega a `/games`.
-- [ ] Sección de stats muestra el conteo real de juegos (ej. "8+") en vez de "12+".
-- [ ] Secciones "Actividad en Vivo" y "Top Jugadores · Hoy" se renderizan con los datos estáticos del template.
-- [ ] Botón "VER SALÓN →" navega a `/salon`.
-- [ ] Sección "Precios" muestra el plan único gratuito y el FAQ; botón "EMPEZAR GRATIS →" navega a `/login`.
-- [ ] CTA final "INSERTAR MONEDA →" navega a `/games`.
-- [ ] Las animaciones de scroll-reveal (clase `.reveal`/`.in`) se activan al hacer scroll por el Home.
-- [ ] `/games` reproduce exactamente la funcionalidad que antes tenía `/` (hero, buscador, chips de categoría, grid de `GameCard`, estado "sin resultados").
-- [ ] El Nav muestra "Inicio" y "Biblioteca" en ese orden, tanto en desktop como en el menú móvil.
-- [ ] En `/`, el link "Inicio" del Nav aparece activo; en `/games` y `/juego/[id]`, el link "Biblioteca" aparece activo.
-- [ ] En `/juego/[id]`, el botón "VOLVER AL VAULT" navega a `/games` (no a `/`).
-- [ ] No aparece ningún link "Acerca de" en el Nav.
-- [ ] Paridad visual del Home contra `references/templates/home-about/arcade-vault-standalone.html`.
+- [x] `npm run dev` levanta la app sin errores de build/tipo.
+- [x] `/` muestra el Home: hero con silhouettes flotantes, título "EL ARCADE CLÁSICO ESTÁ DE VUELTA", CTAs "EXPLORAR JUEGOS" y "CREAR CUENTA".
+- [x] Sección "¿Por qué Arcade Vault?" muestra las 4 feature-cards con sus íconos.
+- [x] Sección "Juegos disponibles ahora" muestra 6 `MiniCard` (de los 8 `GAMES`); click en una navega a `/juego/[id]` correcto.
+- [x] Botón "VER TODOS LOS JUEGOS →" navega a `/games`.
+- [x] Sección de stats muestra el conteo real de juegos (ej. "8+") en vez de "12+".
+- [x] Secciones "Actividad en Vivo" y "Top Jugadores · Hoy" se renderizan con los datos estáticos del template.
+- [x] Botón "VER SALÓN →" navega a `/salon`.
+- [x] Sección "Precios" muestra el plan único gratuito y el FAQ; botón "EMPEZAR GRATIS →" navega a `/login`.
+- [x] CTA final "INSERTAR MONEDA →" navega a `/games`.
+- [x] Las animaciones de scroll-reveal (clase `.reveal`/`.in`) se activan al hacer scroll por el Home.
+- [x] `/games` reproduce exactamente la funcionalidad que antes tenía `/` (hero, buscador, chips de categoría, grid de `GameCard`, estado "sin resultados").
+- [x] El Nav muestra "Inicio" y "Biblioteca" en ese orden, tanto en desktop como en el menú móvil.
+- [x] En `/`, el link "Inicio" del Nav aparece activo; en `/games` y `/juego/[id]`, el link "Biblioteca" aparece activo.
+- [x] En `/juego/[id]`, el botón "VOLVER AL VAULT" navega a `/games` (no a `/`).
+- [x] No aparece ningún link "Acerca de" en el Nav.
+- [x] Paridad visual del Home contra `references/templates/home-about/arcade-vault-standalone.html`.
 
 ## Decisiones tomadas y descartadas
 
