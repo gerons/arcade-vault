@@ -1,0 +1,113 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - navigation [ref=f4e3]:
+      - link "ARCADE VAULT" [ref=f4e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f4e7]:
+        - link "Biblioteca" [ref=f4e8] [cursor=pointer]:
+          - /url: /
+        - link "Salón de la Fama" [ref=f4e9] [cursor=pointer]:
+          - /url: /salon
+      - generic [ref=f4e10]: CRÉDITOS · 03
+      - link "Iniciar Sesión" [ref=f4e13] [cursor=pointer]:
+        - /url: /login
+    - complementary [ref=f4e14]:
+      - generic [ref=f4e15]: MENÚ
+      - link "Biblioteca" [ref=f4e16] [cursor=pointer]:
+        - /url: /
+      - link "Salón de la Fama" [ref=f4e17] [cursor=pointer]:
+        - /url: /salon
+      - link "Iniciar Sesión" [ref=f4e18] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f4e20]: CRÉDITOS · 03
+    - main [ref=f4e21]:
+      - generic [ref=f4e22]:
+        - generic [ref=f4e26]:
+          - generic [ref=f4e27]:
+            - generic [ref=f4e28]: ARCADE
+            - generic [ref=f4e29]: 1 JUGADOR
+            - generic [ref=f4e30]: TECLADO / TÁCTIL
+            - generic [ref=f4e31]: RETRO 1985
+          - heading "BLOQUE BUSTER" [level=2] [ref=f4e32]
+          - paragraph [ref=f4e33]: Pilota una nave-paleta y rebota un núcleo de plasma para pulverizar muros de bloques cromáticos. Cada nivel reorganiza la grilla en patrones imposibles. ¿Hasta dónde llegará tu racha?
+          - generic [ref=f4e34]:
+            - generic [ref=f4e35]:
+              - generic [ref=f4e36]: Partidas
+              - generic [ref=f4e37]: 12.4K
+            - generic [ref=f4e38]:
+              - generic [ref=f4e39]: Mejor global
+              - generic [ref=f4e40]: "28.450"
+            - generic [ref=f4e41]:
+              - generic [ref=f4e42]: Dificultad
+              - generic [ref=f4e43]: ★ ★ ★ ☆ ☆
+          - generic [ref=f4e44]:
+            - link "▶ JUGAR AHORA" [ref=f4e45] [cursor=pointer]:
+              - /url: /juego/bloque-buster/jugar
+            - link "VOLVER AL VAULT" [ref=f4e46] [cursor=pointer]:
+              - /url: /
+        - complementary [ref=f4e47]:
+          - generic [ref=f4e48]:
+            - heading "MEJORES PUNTUACIONES" [level=3] [ref=f4e49]
+            - generic [ref=f4e50]:
+              - generic [ref=f4e51]: "#01"
+              - generic [ref=f4e52]:
+                - text: Z3R0COOL
+                - generic [ref=f4e53]: 26/10/2026
+              - generic [ref=f4e54]: "288.295"
+            - generic [ref=f4e55]:
+              - generic [ref=f4e56]: "#02"
+              - generic [ref=f4e57]:
+                - text: VAULT_07
+                - generic [ref=f4e58]: 26/07/2026
+              - generic [ref=f4e59]: "265.726"
+            - generic [ref=f4e60]:
+              - generic [ref=f4e61]: "#03"
+              - generic [ref=f4e62]:
+                - text: ARKADYA
+                - generic [ref=f4e63]: 03/08/2026
+              - generic [ref=f4e64]: "263.269"
+            - generic [ref=f4e65]:
+              - generic [ref=f4e66]: "#04"
+              - generic [ref=f4e67]:
+                - text: GLITCHA
+                - generic [ref=f4e68]: 10/08/2026
+              - generic [ref=f4e69]: "253.385"
+            - generic [ref=f4e70]:
+              - generic [ref=f4e71]: "#05"
+              - generic [ref=f4e72]:
+                - text: MAGENTA88
+                - generic [ref=f4e73]: 07/09/2026
+              - generic [ref=f4e74]: "197.855"
+            - generic [ref=f4e75]:
+              - generic [ref=f4e76]: "#06"
+              - generic [ref=f4e77]:
+                - text: NEONFOX
+                - generic [ref=f4e78]: 10/02/2026
+              - generic [ref=f4e79]: "147.679"
+            - generic [ref=f4e80]:
+              - generic [ref=f4e81]: "#07"
+              - generic [ref=f4e82]:
+                - text: RETROVIRA
+                - generic [ref=f4e83]: 17/12/2026
+              - generic [ref=f4e84]: "90.057"
+            - generic [ref=f4e85]:
+              - generic [ref=f4e86]: "#08"
+              - generic [ref=f4e87]:
+                - text: VECTORX
+                - generic [ref=f4e88]: 03/05/2026
+              - generic [ref=f4e89]: "77.325"
+            - generic [ref=f4e90]:
+              - generic [ref=f4e91]: "#09"
+              - generic [ref=f4e92]:
+                - text: M00NRYU
+                - generic [ref=f4e93]: 24/02/2026
+              - generic [ref=f4e94]: "66.441"
+            - generic [ref=f4e95]:
+              - generic [ref=f4e96]: "#10"
+              - generic [ref=f4e97]:
+                - text: ATARI_KID
+                - generic [ref=f4e98]: 15/12/2026
+              - generic [ref=f4e99]: "44.370"
+    - contentinfo [ref=f4e100]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f4e106] [cursor=pointer]
+  - alert [ref=f4e110]

@@ -1,0 +1,124 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - navigation [ref=f9e3]:
+      - link "ARCADE VAULT" [ref=f9e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f9e7]:
+        - link "Biblioteca" [ref=f9e8] [cursor=pointer]:
+          - /url: /
+        - link "Salón de la Fama" [ref=f9e9] [cursor=pointer]:
+          - /url: /salon
+      - generic [ref=f9e10]: CRÉDITOS · 03
+      - link "Iniciar Sesión" [ref=f9e13] [cursor=pointer]:
+        - /url: /login
+    - complementary [ref=f9e14]:
+      - generic [ref=f9e15]: MENÚ
+      - link "Biblioteca" [ref=f9e16] [cursor=pointer]:
+        - /url: /
+      - link "Salón de la Fama" [ref=f9e17] [cursor=pointer]:
+        - /url: /salon
+      - link "Iniciar Sesión" [ref=f9e18] [cursor=pointer]:
+        - /url: /login
+      - generic [ref=f9e20]: CRÉDITOS · 03
+    - main [ref=f9e21]:
+      - generic [ref=f9e22]:
+        - generic [ref=f9e23]:
+          - heading "SALÓN DE LA FAMA" [level=1] [ref=f9e24]
+          - paragraph [ref=f9e25]: LOS NOMBRES QUE NUNCA SE BORRAN DE LA PANTALLA
+        - generic [ref=f9e26]:
+          - button "BLOQUE BUSTER" [ref=f9e27] [cursor=pointer]
+          - button "CAÍDA" [ref=f9e28] [cursor=pointer]
+          - button "SERPENTINA" [ref=f9e29] [cursor=pointer]
+          - button "GLOTÓN" [ref=f9e30] [cursor=pointer]
+          - button "INVASORES" [ref=f9e31] [cursor=pointer]
+          - button "ROCAS" [ref=f9e32] [cursor=pointer]
+          - button "RANARIA" [ref=f9e33] [cursor=pointer]
+          - button "DUELO PIXEL" [ref=f9e34] [cursor=pointer]
+        - generic [ref=f9e35]:
+          - generic [ref=f9e36]:
+            - generic [ref=f9e37]: "02"
+            - generic [ref=f9e38]: GLITCHA
+            - generic [ref=f9e39]: "232.454"
+            - generic [ref=f9e40]: 20/06/2026
+          - generic [ref=f9e41]:
+            - generic [ref=f9e42]: CAMPEÓN
+            - generic [ref=f9e43]: "01"
+            - generic [ref=f9e44]: RGB_QUEEN
+            - generic [ref=f9e45]: "275.088"
+            - generic [ref=f9e46]: 20/05/2026
+          - generic [ref=f9e47]:
+            - generic [ref=f9e48]: "03"
+            - generic [ref=f9e49]: Z3R0COOL
+            - generic [ref=f9e50]: "232.104"
+            - generic [ref=f9e51]: 05/03/2026
+        - generic [ref=f9e52]:
+          - generic [ref=f9e53]:
+            - generic [ref=f9e54]: RANGO
+            - generic [ref=f9e55]: JUGADOR
+            - generic [ref=f9e56]: PUNTUACIÓN
+            - generic [ref=f9e57]: FECHA
+          - generic [ref=f9e58]:
+            - generic [ref=f9e59]: "#01"
+            - generic [ref=f9e60]: RGB_QUEEN
+            - generic [ref=f9e61]: "275.088"
+            - generic [ref=f9e62]: 20/05/2026
+          - generic [ref=f9e63]:
+            - generic [ref=f9e64]: "#02"
+            - generic [ref=f9e65]: GLITCHA
+            - generic [ref=f9e66]: "232.454"
+            - generic [ref=f9e67]: 20/06/2026
+          - generic [ref=f9e68]:
+            - generic [ref=f9e69]: "#03"
+            - generic [ref=f9e70]: Z3R0COOL
+            - generic [ref=f9e71]: "232.104"
+            - generic [ref=f9e72]: 05/03/2026
+          - generic [ref=f9e73]:
+            - generic [ref=f9e74]: "#04"
+            - generic [ref=f9e75]: DROID_X
+            - generic [ref=f9e76]: "214.488"
+            - generic [ref=f9e77]: 20/05/2026
+          - generic [ref=f9e78]:
+            - generic [ref=f9e79]: "#05"
+            - generic [ref=f9e80]: MAGENTA88
+            - generic [ref=f9e81]: "210.081"
+            - generic [ref=f9e82]: 19/08/2026
+          - generic [ref=f9e83]:
+            - generic [ref=f9e84]: "#06"
+            - generic [ref=f9e85]: VAULT_07
+            - generic [ref=f9e86]: "209.958"
+            - generic [ref=f9e87]: 01/10/2026
+          - generic [ref=f9e88]:
+            - generic [ref=f9e89]: "#07"
+            - generic [ref=f9e90]: CYBER_LU
+            - generic [ref=f9e91]: "174.442"
+            - generic [ref=f9e92]: 16/05/2026
+          - generic [ref=f9e93]:
+            - generic [ref=f9e94]: "#08"
+            - generic [ref=f9e95]: NEONFOX
+            - generic [ref=f9e96]: "160.117"
+            - generic [ref=f9e97]: 20/05/2026
+          - generic [ref=f9e98]:
+            - generic [ref=f9e99]: "#09"
+            - generic [ref=f9e100]: PIXEL_DAD
+            - generic [ref=f9e101]: "140.654"
+            - generic [ref=f9e102]: 19/01/2026
+          - generic [ref=f9e103]:
+            - generic [ref=f9e104]: "#10"
+            - generic [ref=f9e105]: ARKADYA
+            - generic [ref=f9e106]: "112.969"
+            - generic [ref=f9e107]: 19/11/2026
+          - generic [ref=f9e108]:
+            - generic [ref=f9e109]: "#11"
+            - generic [ref=f9e110]: VECTORX
+            - generic [ref=f9e111]: "35.990"
+            - generic [ref=f9e112]: 10/01/2026
+          - generic [ref=f9e113]:
+            - generic [ref=f9e114]: "#12"
+            - generic [ref=f9e115]: PX_KAI
+            - generic [ref=f9e116]: "4146"
+            - generic [ref=f9e117]: 13/02/2026
+        - link "VOLVER A LA BIBLIOTECA" [ref=f9e119] [cursor=pointer]:
+          - /url: /
+    - contentinfo [ref=f9e120]: © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
+  - button "Open Next.js Dev Tools" [ref=f9e126] [cursor=pointer]
+  - alert [ref=f9e130]
