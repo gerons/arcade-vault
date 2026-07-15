@@ -1,6 +1,6 @@
 # 03 — About Page y Formulario de Contacto
 
-- Estado: Aprobado
+- Estado: Implementado
 - Fecha: 2026-07-14
 - Dependencias: [01-mvp-visual](01-mvp-visual.md) (Nav, layout), [02-home-page](02-home-page.md) (Nav con rutas actuales, `useReveal`)
 - Objetivo: Migrar la página "Acerca de" del template a `/about`, con un formulario de contacto que envía correos reales vía Resend (API de prueba `onboarding@resend.dev`) a gerons69@gmail.com.
@@ -71,18 +71,18 @@ El endpoint valida solo que los tres campos no vengan vacíos (mismo criterio qu
 
 ## Criterios de aceptación
 
-- [ ] `npm run dev` levanta la app sin errores de build/tipo.
-- [ ] `/about` muestra el hero "ACERCA DE ARCADE VAULT" con el texto de misión y los 3 highlights (HEART/BROWSER/PLANT) con sus íconos.
-- [ ] Las animaciones de scroll-reveal (`.reveal`/`.in`) se activan al hacer scroll en `/about`, usando el hook `useReveal` existente.
-- [ ] El Nav (desktop y móvil) muestra el link "Acerca de" después de "Salón de la Fama", y navega a `/about`.
-- [ ] En `/about`, el link "Acerca de" del Nav aparece activo.
-- [ ] Enviar el formulario con algún campo vacío dispara la animación de "shake" y no hace ninguna petición de red.
-- [ ] Enviar el formulario con los 3 campos completos deshabilita el botón y muestra un spinner mientras se procesa.
-- [ ] Un envío exitoso muestra la pantalla de "terminal" de éxito con el nombre ingresado, y llega un correo real a gerons69@gmail.com con nombre, email y mensaje enviados.
-- [ ] Un envío fallido (ej. API key inválida o Resend caído) muestra un mensaje de error visible con opción de reintentar, sin dejar el botón deshabilitado indefinidamente.
-- [ ] El botón "ENVIAR OTRO MENSAJE" tras un éxito limpia el formulario y vuelve al estado inicial.
-- [ ] `RESEND_API_KEY` no aparece expuesta en el bundle de cliente (se usa solo dentro de `app/api/contact/route.ts`).
-- [ ] Paridad visual de `/about` contra `references/resources/templates/home-about/arcade-vault-standalone.html` (sección about+contact).
+- [x] `npm run dev` levanta la app sin errores de build/tipo.
+- [x] `/about` muestra el hero "ACERCA DE ARCADE VAULT" con el texto de misión y los 3 highlights (HEART/BROWSER/PLANT) con sus íconos.
+- [x] Las animaciones de scroll-reveal (`.reveal`/`.in`) se activan al hacer scroll en `/about`, usando el hook `useReveal` existente.
+- [x] El Nav (desktop y móvil) muestra el link "Acerca de" después de "Salón de la Fama", y navega a `/about`.
+- [x] En `/about`, el link "Acerca de" del Nav aparece activo.
+- [x] Enviar el formulario con algún campo vacío dispara la animación de "shake" y no hace ninguna petición de red.
+- [x] Enviar el formulario con los 3 campos completos deshabilita el botón y muestra un spinner mientras se procesa.
+- [x] Un envío exitoso muestra la pantalla de "terminal" de éxito con el nombre ingresado, y llega un correo real a gerons69@gmail.com con nombre, email y mensaje enviados.
+- [x] Un envío fallido (ej. API key inválida o Resend caído) muestra un mensaje de error visible con opción de reintentar, sin dejar el botón deshabilitado indefinidamente.
+- [x] El botón "ENVIAR OTRO MENSAJE" tras un éxito limpia el formulario y vuelve al estado inicial.
+- [x] `RESEND_API_KEY` no aparece expuesta en el bundle de cliente (se usa solo dentro de `app/api/contact/route.ts`).
+- [x] Paridad visual de `/about` contra `references/resources/templates/home-about/arcade-vault-standalone.html` (sección about+contact).
 
 ## Decisiones tomadas y descartadas
 
