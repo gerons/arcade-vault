@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 120,
+            "statusMessage": "Prettier + ESLint...",
+            "command": "f=$(jq -r '.tool_response.filePath // .tool_input.file_path // empty'); [ -z \"$f\" ] && exit 0; npx --yes prettier --write --ignore-unknown \"$f\" >/dev/null 2>&1; case \"$f\" in *.js|*.jsx|*.ts|*.tsx|*.mjs|*.cjs) npx --yes eslint --fix \"$f\" >/dev/null 2>&1; sed -i '' '/^[[:space:]]*$/d' \"$f\" 2>/dev/null; npx --yes prettier --write --ignore-unknown \"$f\" >/dev/null 2>&1;; esac; true"
+          }
+        ]
+      }
+    ]
+  }
+}
