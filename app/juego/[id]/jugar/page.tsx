@@ -1,9 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useParams, useRouter, notFound } from "next/navigation";
 import Link from "next/link";
 import { GAMES } from "../../../lib/data";
 import { useAuth } from "../../../lib/AuthProvider";
+import AsteroidesGame, {
+  type AsteroidesGameHandle,
+} from "../../asteroides/AsteroidesGame";
+import type { EngineSnapshot } from "../../../lib/games/asteroides/engine";
 const DEMO_SCORE = 12450;
 const DEMO_LIVES = 3;
 const DEMO_LEVEL = 1;
@@ -12,21 +16,29 @@ export default function GamePlayer() {
   const router = useRouter();
   const { user } = useAuth();
   const game = GAMES.find((g) => g.id === id);
+  const isAsteroides = game?.id === "asteroides";
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [name, setName] = useState(user ? user.username : "INVITADO");
   const [saved, setSaved] = useState(false);
+  const [snapshot, setSnapshot] = useState<EngineSnapshot | null>(null);
+  const engineHandleRef = useRef<AsteroidesGameHandle>(null);
   if (!game) notFound();
+  const score = isAsteroides ? (snapshot?.score ?? 0) : DEMO_SCORE;
+  const lives = isAsteroides ? (snapshot?.lives ?? DEMO_LIVES) : DEMO_LIVES;
+  const level = isAsteroides ? (snapshot?.level ?? DEMO_LEVEL) : DEMO_LEVEL;
+  const modalOpen = over || (isAsteroides && snapshot?.state === "gameover");
   const endGame = () => setOver(true);
   const restart = () => {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    if (isAsteroides) engineHandleRef.current?.reset();
   };
   const saveScore = () => {
     try {
       const all = JSON.parse(localStorage.getItem("av_scores") || "[]");
-      all.push({ game: game.id, score: DEMO_SCORE, name, at: Date.now() });
+      all.push({ game: game.id, score, name, at: Date.now() });
       localStorage.setItem("av_scores", JSON.stringify(all));
     } catch {
       // ignore storage errors
@@ -45,24 +57,38 @@ export default function GamePlayer() {
           </div>
           <div className="hud-stat">
             <div className="l">Puntuación</div>
-            <div className="v">{DEMO_SCORE.toLocaleString("es-ES")}</div>
+            <div className="v">{score.toLocaleString("es-ES")}</div>
           </div>
           <div className="hud-stat lives">
             <div className="l">Vidas</div>
-            <div className="v">{"♥ ".repeat(DEMO_LIVES).trim()}</div>
+            <div className="v">{"♥ ".repeat(lives).trim()}</div>
           </div>
           <div className="hud-stat level">
             <div className="l">Nivel</div>
-            <div className="v">{String(DEMO_LEVEL).padStart(2, "0")}</div>
+            <div className="v">{String(level).padStart(2, "0")}</div>
           </div>
         </div>
         <div className="hud-actions">
-          <button className="btn yellow" onClick={() => setPaused((p) => !p)}>
+          <button
+            className="btn yellow"
+            onClick={() =>
+              setPaused((p) => {
+                const next = !p;
+                if (isAsteroides) {
+                  if (next) engineHandleRef.current?.pause();
+                  else engineHandleRef.current?.resume();
+                }
+                return next;
+              })
+            }
+          >
             {paused ? "REANUDAR" : "PAUSA"}
           </button>
-          <button className="btn magenta" onClick={endGame}>
-            FIN
-          </button>
+          {!isAsteroides && (
+            <button className="btn magenta" onClick={endGame}>
+              FIN
+            </button>
+          )}
           <Link href={`/juego/${game.id}`} className="btn ghost">
             SALIR
           </Link>
@@ -70,13 +96,17 @@ export default function GamePlayer() {
       </div>
       <div className="crt">
         <div className="crt-screen">
-          <div className="game-arena">
-            <div className="grid-floor"></div>
-            <div className="enemy e1"></div>
-            <div className="enemy e2"></div>
-            <div className="enemy e3"></div>
-            <div className="player-ship"></div>
-          </div>
+          {isAsteroides ? (
+            <AsteroidesGame ref={engineHandleRef} onSnapshot={setSnapshot} />
+          ) : (
+            <div className="game-arena">
+              <div className="grid-floor"></div>
+              <div className="enemy e1"></div>
+              <div className="enemy e2"></div>
+              <div className="enemy e3"></div>
+              <div className="player-ship"></div>
+            </div>
+          )}
           {paused && (
             <div
               className="crt-content"
@@ -107,12 +137,12 @@ export default function GamePlayer() {
           <span>CARGA · 1MB</span>
         </div>
       </div>
-      {over && (
+      {modalOpen && (
         <div className="modal-bd">
           <div className="modal">
             <h2>FIN DEL JUEGO</h2>
             <div className="final-label">PUNTUACIÓN FINAL</div>
-            <div className="final">{DEMO_SCORE.toLocaleString("es-ES")}</div>
+            <div className="final">{score.toLocaleString("es-ES")}</div>
             {!saved ? (
               <div className="input-row">
                 <input
