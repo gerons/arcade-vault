@@ -100,6 +100,17 @@ export const GAMES: Game[] = [
     best: 24,
     plays: "4.2K",
   },
+  {
+    id: "asteroides",
+    title: "ASTEROIDES",
+    short: "Pulveriza rocas espaciales en gravedad cero.",
+    long: "Nave triangular a la deriva en un campo de asteroides toroidal. Dispara y rota para partir rocas grandes en fragmentos cada vez más pequeños, esquiva restos y sobrevive con solo 3 vidas.",
+    cat: "SHOOTER",
+    cover: "cover-asteroides",
+    color: "cyan",
+    best: 38200,
+    plays: "3.1K",
+  },
 ];
 export const CATS: string[] = [
   "TODOS",
