@@ -27,11 +27,13 @@ export default function GamePlayer() {
   const score = isAsteroides ? (snapshot?.score ?? 0) : DEMO_SCORE;
   const lives = isAsteroides ? (snapshot?.lives ?? DEMO_LIVES) : DEMO_LIVES;
   const level = isAsteroides ? (snapshot?.level ?? DEMO_LEVEL) : DEMO_LEVEL;
+  const modalOpen = over || (isAsteroides && snapshot?.state === "gameover");
   const endGame = () => setOver(true);
   const restart = () => {
     setPaused(false);
     setOver(false);
     setSaved(false);
+    if (isAsteroides) engineHandleRef.current?.reset();
   };
   const saveScore = () => {
     try {
@@ -67,12 +69,26 @@ export default function GamePlayer() {
           </div>
         </div>
         <div className="hud-actions">
-          <button className="btn yellow" onClick={() => setPaused((p) => !p)}>
+          <button
+            className="btn yellow"
+            onClick={() =>
+              setPaused((p) => {
+                const next = !p;
+                if (isAsteroides) {
+                  if (next) engineHandleRef.current?.pause();
+                  else engineHandleRef.current?.resume();
+                }
+                return next;
+              })
+            }
+          >
             {paused ? "REANUDAR" : "PAUSA"}
           </button>
-          <button className="btn magenta" onClick={endGame}>
-            FIN
-          </button>
+          {!isAsteroides && (
+            <button className="btn magenta" onClick={endGame}>
+              FIN
+            </button>
+          )}
           <Link href={`/juego/${game.id}`} className="btn ghost">
             SALIR
           </Link>
@@ -121,7 +137,7 @@ export default function GamePlayer() {
           <span>CARGA · 1MB</span>
         </div>
       </div>
-      {over && (
+      {modalOpen && (
         <div className="modal-bd">
           <div className="modal">
             <h2>FIN DEL JUEGO</h2>
