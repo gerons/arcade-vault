@@ -1,6 +1,6 @@
 # 06 — Leaderboard y catálogo de juegos en Supabase
 
-- Estado: Aprobado
+- Estado: Implementado
 - Fecha: 2026-07-22
 - Dependencias: [04-auth-supabase](04-auth-supabase.md) (sesión real de Supabase, `AuthUser`), [05-asteroides-jugable](05-asteroides-jugable.md) (único juego con score real hoy)
 - Objetivo: Reemplazar el catálogo mock `GAMES` y las puntuaciones simuladas (`seededScores`, `localStorage av_scores`) por dos tablas reales en Supabase (`games` y `scores`) con mejor puntuación/plays actualizados por trigger, consumidas por la Biblioteca, el detalle de juego y el Salón de la Fama, con guardado de puntuación real solo para usuarios con sesión.
