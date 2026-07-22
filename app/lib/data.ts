@@ -12,13 +12,6 @@ export interface Game {
   best_score: number;
   plays: number;
 }
-export const CATS: string[] = [
-  "TODOS",
-  "ARCADE",
-  "PUZZLE",
-  "SHOOTER",
-  "VERSUS",
-];
 export interface ScoreRow {
   player_name: string;
   score: number;

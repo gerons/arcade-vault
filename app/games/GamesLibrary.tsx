@@ -1,7 +1,8 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CATS, type Game } from "../lib/data";
+import type { Game } from "../lib/data";
+import { CATS } from "../lib/constants";
 function GameCard({
   game,
   onSelect,
