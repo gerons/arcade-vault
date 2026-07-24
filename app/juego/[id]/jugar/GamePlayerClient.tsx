@@ -11,6 +11,10 @@ import AsteroidesGame, {
 import type { EngineSnapshot } from "../../../lib/games/asteroides/engine";
 import TetrisGame, { type TetrisGameHandle } from "../../tetris/TetrisGame";
 import type { EngineSnapshot as TetrisSnapshot } from "../../../lib/games/tetris/engine";
+import ArkanoidGame, {
+  type ArkanoidGameHandle,
+} from "../../arkanoid/ArkanoidGame";
+import type { EngineSnapshot as ArkanoidSnapshot } from "../../../lib/games/arkanoid/engine";
 const DEMO_SCORE = 12450;
 const DEMO_LIVES = 3;
 const DEMO_LEVEL = 1;
@@ -19,6 +23,7 @@ export default function GamePlayerClient({ game }: { game: Game }) {
   const { user } = useAuth();
   const isAsteroides = game.id === "asteroides";
   const isTetris = game.id === "tetris";
+  const isArkanoid = game.id === "arkanoid";
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -27,25 +32,37 @@ export default function GamePlayerClient({ game }: { game: Game }) {
   const [tetrisSnapshot, setTetrisSnapshot] = useState<TetrisSnapshot | null>(
     null,
   );
+  const [arkanoidSnapshot, setArkanoidSnapshot] =
+    useState<ArkanoidSnapshot | null>(null);
   const engineHandleRef = useRef<AsteroidesGameHandle>(null);
   const tetrisHandleRef = useRef<TetrisGameHandle>(null);
+  const arkanoidHandleRef = useRef<ArkanoidGameHandle>(null);
   const score = isAsteroides
     ? (snapshot?.score ?? 0)
     : isTetris
       ? (tetrisSnapshot?.score ?? 0)
-      : DEMO_SCORE;
-  const lives = isAsteroides ? (snapshot?.lives ?? DEMO_LIVES) : DEMO_LIVES;
+      : isArkanoid
+        ? (arkanoidSnapshot?.score ?? 0)
+        : DEMO_SCORE;
+  const lives = isAsteroides
+    ? (snapshot?.lives ?? DEMO_LIVES)
+    : isArkanoid
+      ? (arkanoidSnapshot?.lives ?? DEMO_LIVES)
+      : DEMO_LIVES;
   const lines = tetrisSnapshot?.lines ?? 0;
   const level = isAsteroides
     ? (snapshot?.level ?? DEMO_LEVEL)
     : isTetris
       ? (tetrisSnapshot?.level ?? DEMO_LEVEL)
-      : DEMO_LEVEL;
+      : isArkanoid
+        ? (arkanoidSnapshot?.level ?? DEMO_LEVEL)
+        : DEMO_LEVEL;
   const playerLabel = user ? user.username : "INVITADO";
   const modalOpen =
     over ||
     (isAsteroides && snapshot?.state === "gameover") ||
-    (isTetris && tetrisSnapshot?.state === "gameover");
+    (isTetris && tetrisSnapshot?.state === "gameover") ||
+    (isArkanoid && arkanoidSnapshot?.state === "gameover");
   const endGame = () => setOver(true);
   const restart = () => {
     setPaused(false);
@@ -53,6 +70,7 @@ export default function GamePlayerClient({ game }: { game: Game }) {
     setSaved(false);
     if (isAsteroides) engineHandleRef.current?.reset();
     if (isTetris) tetrisHandleRef.current?.reset();
+    if (isArkanoid) arkanoidHandleRef.current?.reset();
   };
   const saveScore = async () => {
     if (!user) return;
@@ -116,6 +134,9 @@ export default function GamePlayerClient({ game }: { game: Game }) {
                 } else if (isTetris) {
                   if (next) tetrisHandleRef.current?.pause();
                   else tetrisHandleRef.current?.resume();
+                } else if (isArkanoid) {
+                  if (next) arkanoidHandleRef.current?.pause();
+                  else arkanoidHandleRef.current?.resume();
                 }
                 return next;
               })
@@ -123,7 +144,7 @@ export default function GamePlayerClient({ game }: { game: Game }) {
           >
             {paused ? "REANUDAR" : "PAUSA"}
           </button>
-          {!isAsteroides && !isTetris && (
+          {!isAsteroides && !isTetris && !isArkanoid && (
             <button className="btn magenta" onClick={endGame}>
               FIN
             </button>
@@ -139,6 +160,11 @@ export default function GamePlayerClient({ game }: { game: Game }) {
             <AsteroidesGame ref={engineHandleRef} onSnapshot={setSnapshot} />
           ) : isTetris ? (
             <TetrisGame ref={tetrisHandleRef} onSnapshot={setTetrisSnapshot} />
+          ) : isArkanoid ? (
+            <ArkanoidGame
+              ref={arkanoidHandleRef}
+              onSnapshot={setArkanoidSnapshot}
+            />
           ) : (
             <div className="game-arena">
               <div className="grid-floor"></div>
