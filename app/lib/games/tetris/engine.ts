@@ -347,10 +347,10 @@ export function createEngine(
     },
     reset() {
       if (rafId !== null) cancelAnimationFrame(rafId);
-      rafId = null;
       lastTime = null;
       init();
       notify();
+      rafId = requestAnimationFrame(loop);
     },
     getSnapshot() {
       return snapshot();
