@@ -133,7 +133,7 @@ export default function GamePlayerClient({ game }: { game: Game }) {
           </Link>
         </div>
       </div>
-      <div className="crt">
+      <div className={`crt${isTetris ? " crt-tetris" : ""}`}>
         <div className={`crt-screen${isTetris ? " crt-screen-tetris" : ""}`}>
           {isAsteroides ? (
             <AsteroidesGame ref={engineHandleRef} onSnapshot={setSnapshot} />
