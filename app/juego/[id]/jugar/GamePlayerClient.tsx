@@ -9,6 +9,8 @@ import AsteroidesGame, {
   type AsteroidesGameHandle,
 } from "../../asteroides/AsteroidesGame";
 import type { EngineSnapshot } from "../../../lib/games/asteroides/engine";
+import TetrisGame, { type TetrisGameHandle } from "../../tetris/TetrisGame";
+import type { EngineSnapshot as TetrisSnapshot } from "../../../lib/games/tetris/engine";
 const DEMO_SCORE = 12450;
 const DEMO_LIVES = 3;
 const DEMO_LEVEL = 1;
@@ -16,23 +18,41 @@ export default function GamePlayerClient({ game }: { game: Game }) {
   const router = useRouter();
   const { user } = useAuth();
   const isAsteroides = game.id === "asteroides";
+  const isTetris = game.id === "tetris";
   const [paused, setPaused] = useState(false);
   const [over, setOver] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
   const [snapshot, setSnapshot] = useState<EngineSnapshot | null>(null);
+  const [tetrisSnapshot, setTetrisSnapshot] = useState<TetrisSnapshot | null>(
+    null,
+  );
   const engineHandleRef = useRef<AsteroidesGameHandle>(null);
-  const score = isAsteroides ? (snapshot?.score ?? 0) : DEMO_SCORE;
+  const tetrisHandleRef = useRef<TetrisGameHandle>(null);
+  const score = isAsteroides
+    ? (snapshot?.score ?? 0)
+    : isTetris
+      ? (tetrisSnapshot?.score ?? 0)
+      : DEMO_SCORE;
   const lives = isAsteroides ? (snapshot?.lives ?? DEMO_LIVES) : DEMO_LIVES;
-  const level = isAsteroides ? (snapshot?.level ?? DEMO_LEVEL) : DEMO_LEVEL;
+  const lines = tetrisSnapshot?.lines ?? 0;
+  const level = isAsteroides
+    ? (snapshot?.level ?? DEMO_LEVEL)
+    : isTetris
+      ? (tetrisSnapshot?.level ?? DEMO_LEVEL)
+      : DEMO_LEVEL;
   const playerLabel = user ? user.username : "INVITADO";
-  const modalOpen = over || (isAsteroides && snapshot?.state === "gameover");
+  const modalOpen =
+    over ||
+    (isAsteroides && snapshot?.state === "gameover") ||
+    (isTetris && tetrisSnapshot?.state === "gameover");
   const endGame = () => setOver(true);
   const restart = () => {
     setPaused(false);
     setOver(false);
     setSaved(false);
     if (isAsteroides) engineHandleRef.current?.reset();
+    if (isTetris) tetrisHandleRef.current?.reset();
   };
   const saveScore = async () => {
     if (!user) return;
@@ -68,10 +88,17 @@ export default function GamePlayerClient({ game }: { game: Game }) {
             <div className="l">Puntuación</div>
             <div className="v">{score.toLocaleString("es-ES")}</div>
           </div>
-          <div className="hud-stat lives">
-            <div className="l">Vidas</div>
-            <div className="v">{"♥ ".repeat(lives).trim()}</div>
-          </div>
+          {isTetris ? (
+            <div className="hud-stat">
+              <div className="l">Líneas</div>
+              <div className="v">{lines}</div>
+            </div>
+          ) : (
+            <div className="hud-stat lives">
+              <div className="l">Vidas</div>
+              <div className="v">{"♥ ".repeat(lives).trim()}</div>
+            </div>
+          )}
           <div className="hud-stat level">
             <div className="l">Nivel</div>
             <div className="v">{String(level).padStart(2, "0")}</div>
@@ -86,6 +113,9 @@ export default function GamePlayerClient({ game }: { game: Game }) {
                 if (isAsteroides) {
                   if (next) engineHandleRef.current?.pause();
                   else engineHandleRef.current?.resume();
+                } else if (isTetris) {
+                  if (next) tetrisHandleRef.current?.pause();
+                  else tetrisHandleRef.current?.resume();
                 }
                 return next;
               })
@@ -93,7 +123,7 @@ export default function GamePlayerClient({ game }: { game: Game }) {
           >
             {paused ? "REANUDAR" : "PAUSA"}
           </button>
-          {!isAsteroides && (
+          {!isAsteroides && !isTetris && (
             <button className="btn magenta" onClick={endGame}>
               FIN
             </button>
@@ -104,9 +134,11 @@ export default function GamePlayerClient({ game }: { game: Game }) {
         </div>
       </div>
       <div className="crt">
-        <div className="crt-screen">
+        <div className={`crt-screen${isTetris ? " crt-screen-tetris" : ""}`}>
           {isAsteroides ? (
             <AsteroidesGame ref={engineHandleRef} onSnapshot={setSnapshot} />
+          ) : isTetris ? (
+            <TetrisGame ref={tetrisHandleRef} onSnapshot={setTetrisSnapshot} />
           ) : (
             <div className="game-arena">
               <div className="grid-floor"></div>
