@@ -1,6 +1,6 @@
 # 08 — Arkanoid jugable
 
-- Estado: Aprobado
+- Estado: Implementado
 - Fecha: 2026-07-23
 - Dependencias: [05-asteroides-jugable](05-asteroides-jugable.md) (patrón de motor +
   reproductor), [06-leaderboard-catalogo-supabase](06-leaderboard-catalogo-supabase.md)
@@ -188,42 +188,42 @@ cambios de esquema.
 
 ## Criterios de aceptación
 
-- [ ] `npm run dev` levanta la app sin errores de build/tipo.
-- [ ] "ARKANOID" aparece en la Biblioteca (`/`, `/games`), filtrable por categoría
+- [x] `npm run dev` levanta la app sin errores de build/tipo.
+- [x] "ARKANOID" aparece en la Biblioteca (`/`, `/games`), filtrable por categoría
       ARCADE, con su cover `.cover-arkanoid`, sin afectar a "BLOQUE BUSTER".
-- [ ] `/juego/arkanoid` muestra el detalle (descripción, stats, leaderboard real) igual
+- [x] `/juego/arkanoid` muestra el detalle (descripción, stats, leaderboard real) igual
       que cualquier otro juego; si no hay puntuaciones, muestra "AÚN NO HAY
       PUNTUACIONES REGISTRADAS — SÉ EL PRIMERO".
-- [ ] `/juego/arkanoid/jugar` renderiza el canvas jugable real (no la arena
+- [x] `/juego/arkanoid/jugar` renderiza el canvas jugable real (no la arena
       decorativa), con paddle controlable por mouse y por flechas ← →.
-- [ ] Los bloques se destruyen al ser golpeados por la pelota, suman 10 puntos cada
+- [x] Los bloques se destruyen al ser golpeados por la pelota, suman 10 puntos cada
       uno, y disparan la animación de explosión con el color del bloque.
-- [ ] Al vaciar un nivel se carga el siguiente (2 a 5) con más velocidad de pelota; al
+- [x] Al vaciar un nivel se carga el siguiente (2 a 5) con más velocidad de pelota; al
       completar el nivel 5 termina la partida (mismo criterio que perder 0 vidas).
-- [ ] El HUD de React (Jugador/Puntuación/Vidas/Nivel) refleja en vivo el score, vidas
+- [x] El HUD de React (Jugador/Puntuación/Vidas/Nivel) refleja en vivo el score, vidas
       y nivel reales de la partida — no valores fijos de maqueta.
-- [ ] Dentro del canvas no se dibuja un HUD duplicado (Score/Nivel/vidas internos del
+- [x] Dentro del canvas no se dibuja un HUD duplicado (Score/Nivel/vidas internos del
       motor quedan desactivados), ni el overlay de pausa/selector de nivel original.
-- [ ] El botón PAUSA detiene el movimiento del juego; REANUDAR lo continúa desde el
+- [x] El botón PAUSA detiene el movimiento del juego; REANUDAR lo continúa desde el
       mismo estado (sin reiniciar posiciones de paddle/pelota/bloques).
-- [ ] Perder la 3ª vida o completar el nivel 5 abre automáticamente el modal de fin de
+- [x] Perder la 3ª vida o completar el nivel 5 abre automáticamente el modal de fin de
       partida con el puntaje real, sin necesidad de apretar ningún botón FIN.
-- [ ] El botón FIN no aparece para arkanoid.
-- [ ] Guardar puntuación en el modal hace upsert real en `scores`
+- [x] El botón FIN no aparece para arkanoid.
+- [x] Guardar puntuación en el modal hace upsert real en `scores`
       (`game_id: "arkanoid"`), sin crear una fila duplicada al guardar dos veces con el
       mismo usuario.
-- [ ] `games.best_score`/`games.plays` de "arkanoid" se actualizan vía trigger tras
+- [x] `games.best_score`/`games.plays` de "arkanoid" se actualizan vía trigger tras
       guardar (no se tocan a mano desde el cliente).
-- [ ] El puntaje guardado aparece en `/juego/arkanoid` y en `/salon` (pestaña
+- [x] El puntaje guardado aparece en `/juego/arkanoid` y en `/salon` (pestaña
       ARKANOID).
-- [ ] Jugar sin sesión (invitado) no permite guardar; el modal muestra el link a
+- [x] Jugar sin sesión (invitado) no permite guardar; el modal muestra el link a
       `/login`.
-- [ ] "JUGAR DE NUEVO" reinicia la partida completa: score en 0, 3 vidas, nivel 1,
+- [x] "JUGAR DE NUEVO" reinicia la partida completa: score en 0, 3 vidas, nivel 1,
       paddle centrado, bloques del nivel 1 completos.
-- [ ] El botón "SALIR" navega a `/juego/arkanoid` y detiene el loop del juego (sin
+- [x] El botón "SALIR" navega a `/juego/arkanoid` y detiene el loop del juego (sin
       seguir corriendo en background).
-- [ ] Presionar flechas mientras se juega no scrollea la página.
-- [ ] `references/started-games/04-arkanoid/game.js` y `levels.js` permanecen sin
+- [x] Presionar flechas mientras se juega no scrollea la página.
+- [x] `references/started-games/04-arkanoid/game.js` y `levels.js` permanecen sin
       modificar.
 
 ## Decisiones tomadas y descartadas
