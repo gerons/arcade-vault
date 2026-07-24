@@ -906,6 +906,39 @@ a {
   filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.4));
 }
 
+.cover-arkanoid {
+  background: linear-gradient(180deg, #1a0018, #0a0a18 60%);
+}
+.cover-arkanoid::after {
+  content: "";
+  position: absolute;
+  inset: 12% 15% auto 15%;
+  height: 34%;
+  background:
+    repeating-linear-gradient(
+        90deg,
+        var(--magenta) 0 22px,
+        #ff6b9e 22px 44px,
+        #b3005c 44px 66px
+      )
+      0 0/100% 33%,
+    #1a0018;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 110, 0.5));
+}
+.cover-arkanoid::before {
+  content: "";
+  position: absolute;
+  left: 42%;
+  bottom: 14%;
+  width: 16%;
+  height: 5%;
+  background: var(--magenta);
+  border-radius: 3px;
+  box-shadow:
+    0 0 8px var(--magenta),
+    -34px -14px 0 3px #fff;
+}
+
 /* ===== detail screen ===== */
 .av-detail {
   display: grid;
